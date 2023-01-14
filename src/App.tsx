@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { QueryClient, QueryClientProvider } from 'react-query'
+import styled from 'styled-components'
+import CurrencyConvertor from './components/CurrencyConvertor'
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <QueryClientProvider client={queryClient}>
+      <Wrapper>
+        <Logo>💸</Logo>
+        <CurrencyConvertor />
+      </Wrapper>
+    </QueryClientProvider>
+  )
 }
 
-export default App;
+const Logo = styled.div`
+  font-size: 100px;
+  margin-bottom: 40px;
+`
+
+const Wrapper = styled.main`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 0 7px;
+`
+
+export default App
